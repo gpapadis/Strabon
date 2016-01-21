@@ -1,8 +1,6 @@
 FROM mdillon/postgis
 MAINTAINER George Papadakis <gpapadis@di.uoa.gr>
 
-ENV LANG en_US.UTF-8
-ENV LC_ALL en_US.UTF-8
 ENV TOMCAT_MAJOR_VERSION 7
 ENV TOMCAT_MINOR_VERSION 7.0.55
 
@@ -30,11 +28,6 @@ RUN mkdir /tomcat$TOMCAT_VERSION/webapps/strabon && \
     rm -Rf /Strabon
 
 RUN sed -i 's/localhost/postgis/' /tomcat$TOMCAT_VERSION/webapps/strabon/WEB-INF/connection.properties
-
-# Java options
-ENV JAVA_OPTS -server -Xms2048m -Xmx2048m -XX:NewSize=512m \
-              -XX:MaxNewSize=512m -XX:PermSize=2048m \
-              -XX:MaxPermSize=2048m -Dfile.encoding=UTF8
 
 ADD create_tomcat_admin_user.sh /create_tomcat_admin_user.sh
 ADD run.sh /run.sh
