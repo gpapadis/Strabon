@@ -1,4 +1,4 @@
-FROM mdillon/postgis
+FROM ubuntu:14.04
 MAINTAINER George Papadakis <gpapadis@di.uoa.gr>
 
 ENV TOMCAT_MAJOR_VERSION 7
